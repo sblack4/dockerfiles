@@ -55,7 +55,13 @@ VERSION="12.2.1"
 SKIPMD5=0
 NOCACHE=true
 while getopts "hsABcv:" optname; do
-  case "$optname" in
+    case "$optname" in
+    "g")
+    SKIPMD5=1
+    SPARK=1
+    VERSION=12.2.21
+    NOCACHE=false
+    ;;
     "h")
       usage
       ;;
@@ -66,10 +72,9 @@ while getopts "hsABcv:" optname; do
       STANDALONE=1
       ;;
     "B")
-      SPARK=1
-      ;;
+      SPARK=1 ;;
     "v")
-      VERSION="$OPTARG"
+      VERSION="{$OPTARG:-12.2.1}"
       ;;
     "c")
       NOCACHE=false
